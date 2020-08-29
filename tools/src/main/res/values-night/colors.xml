@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--<color name="theme_color_status_bar">@color/theme_color_status_bar_dark</color>-->
+    <!--<color name="theme_color_app_bar">@color/theme_color_app_bar_dark</color>-->
+    <!--<color name="theme_color_background">@color/theme_color_background_dark</color>-->
+    <color name="theme_color_dialog_cards">@color/theme_color_dialog_cards_dark</color>
+
+    <color name="text_color_disabled">#4DFFFFFF</color>
+</resources>

@@ -1,0 +1,25 @@
+apply plugin: 'com.android.library'
+
+apply plugin: 'kotlin-android'
+
+android {
+    buildFeatures {
+        buildConfig = false
+    }
+}
+
+dependencies {
+    implementation libs.kotlin_stdlib_jdk7
+
+    implementation libs.androidx_appcompat
+    implementation libs.androidx_preference
+    implementation libs.androidx_lifecycle_runtime
+    implementation libs.androidx_lifecycle_livedata
+    implementation libs.androidx_lifecycle_viewmodel
+    implementation libs.androidx_media
+    implementation libs.androidx_core_ktx
+    implementation libs.androidx_collection_ktx
+
+    implementation libs.material
+
+}

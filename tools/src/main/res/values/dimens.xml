@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="keyline_icon">16dp</dimen>
+    <!--<dimen name="keyline_content">72dp</dimen>-->
+
+    <dimen name="list_item_text_vertical_padding">8dp</dimen>
+    <dimen name="list_item_one_line_height">56dp</dimen>
+    <dimen name="list_item_two_lines_height">64dp</dimen>
+    <dimen name="list_item_three_lines_height">88dp</dimen>
+
+    <dimen name="padding_custom_dialog_top">8dp</dimen>
+
+</resources>
