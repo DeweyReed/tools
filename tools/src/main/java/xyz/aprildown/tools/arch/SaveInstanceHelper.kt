@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package xyz.aprildown.tools.arch
 
 import androidx.collection.ArrayMap
@@ -7,7 +9,6 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
-@Suppress("unused")
 interface SaveInstanceHelper {
     fun save(key: String, value: Any?)
     fun <T> getAndRemove(key: String): T?

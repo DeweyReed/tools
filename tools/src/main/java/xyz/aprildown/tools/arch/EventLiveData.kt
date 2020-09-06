@@ -7,14 +7,13 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 
-@Deprecated(message = "Use EventLiveData")
-class SingleLiveEvent2<T> : MutableLiveData<SingleLiveEvent2.Content<T>>() {
+class EventLiveData<T> : MutableLiveData<EventLiveData.Event<T>>() {
 
     /**
      * https://medium.com/androiddevelopers/livedata-with-snackbar-navigation-and-other-events-the-singleliveevent-case-ac2622673150#0e87
      * Used as a wrapper for data that is exposed via a LiveData that represents an event.
      */
-    open class Content<out C>(private val content: C) {
+    open class Event<out Type>(private val content: Type) {
 
         var hasBeenHandled = false
             private set // Allow external read but not write
@@ -22,7 +21,7 @@ class SingleLiveEvent2<T> : MutableLiveData<SingleLiveEvent2.Content<T>>() {
         /**
          * Returns the content and prevents its use again.
          */
-        fun consumeContent(): C {
+        fun consumeContent(): Type {
             require(!hasBeenHandled)
             hasBeenHandled = true
             return content
@@ -31,16 +30,16 @@ class SingleLiveEvent2<T> : MutableLiveData<SingleLiveEvent2.Content<T>>() {
         /**
          * Returns the content, even if it's already been handled.
          */
-        fun peekContent(): C = content
+        fun peekContent(): Type = content
     }
 
     fun setEvent(value: T) {
-        setValue(Content(value))
+        setValue(Event(value))
     }
 }
 
 fun <T> LifecycleOwner.observeEvent(
-    liveData: LiveData<SingleLiveEvent2.Content<T>>,
+    liveData: LiveData<EventLiveData.Event<T>>,
     body: (T) -> Unit
 ) {
     liveData.removeObservers(this)
@@ -52,7 +51,7 @@ fun <T> LifecycleOwner.observeEvent(
 }
 
 fun <T> Fragment.observeViewEvent(
-    liveData: LiveData<SingleLiveEvent2.Content<T>>,
+    liveData: LiveData<EventLiveData.Event<T>>,
     body: (T) -> Unit
 ) {
     viewLifecycleOwner.observeEvent(liveData, body)
