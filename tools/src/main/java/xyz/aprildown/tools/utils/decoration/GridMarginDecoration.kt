@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 /**
  * Requires spanSize == 1.
  */
-class PlainGridMarginDecoration(
+class GridMarginDecoration(
     @Px private val margin: Int,
     @Px private val horizontalMargin: Int = 0,
     @Px private val verticalMargin: Int = 0,
