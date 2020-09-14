@@ -2,8 +2,8 @@ ext {
     //noinspection SpellCheckingInspection
     versions = [
             agp         : '4.0.1',
-            kotlin      : '1.4.0',
-            versions    : '0.30.0',
+            kotlin      : '1.4.10',
+            versions    : '0.33.0',
             gradle_maven: '2.1',
 
             compile_sdk : 29,
