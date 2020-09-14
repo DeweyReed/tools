@@ -27,3 +27,5 @@ fun isOMr1orLater(): Boolean = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR
 fun isPOrLater(): Boolean = Build.VERSION.SDK_INT >= Build.VERSION_CODES.P
 
 fun isQOrLater(): Boolean = Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
+
+fun isROrLater(): Boolean = Build.VERSION.SDK_INT >= 30 // TODO: 2020/9/14 : Replace it with R.
