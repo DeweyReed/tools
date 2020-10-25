@@ -10,23 +10,53 @@ import android.os.Build
  * So I have to use functions.
  */
 
+/**
+ * KitKat: 19
+ */
 inline fun isKitKatOrLater(): Boolean = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT
 
+/**
+ * Lollipop: 21
+ */
 inline fun isLOrLater(): Boolean = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
 
+/**
+ * M: 23
+ */
 inline fun isMOrLater(): Boolean = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
 
+/**
+ * N: 24
+ */
 inline fun isNOrLater(): Boolean = Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
 
+/**
+ * N MR1: 25
+ */
 inline fun isNMR1OrLater(): Boolean = Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1
 
+/**
+ * O: 26
+ */
 inline fun isOOrLater(): Boolean = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
 
+/**
+ * O MR1: 27
+ */
 inline fun isOMr1orLater(): Boolean = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1
 
+/**
+ * P: 28
+ */
 inline fun isPOrLater(): Boolean = Build.VERSION.SDK_INT >= Build.VERSION_CODES.P
 
+/**
+ * Q: 29
+ */
 inline fun isQOrLater(): Boolean = Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
 
+/**
+ * R: 30
+ */
 inline fun isROrLater(): Boolean =
     Build.VERSION.SDK_INT >= 30 // TODO: 2020/9/14 : Replace it with R.
