@@ -7,6 +7,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 
+@Deprecated("Use Event directly.")
 class EventLiveData<T> : MutableLiveData<EventLiveData.Event<T>>() {
 
     /**
