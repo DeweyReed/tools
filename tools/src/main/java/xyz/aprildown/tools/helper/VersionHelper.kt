@@ -33,7 +33,7 @@ inline fun isNOrLater(): Boolean = Build.VERSION.SDK_INT >= Build.VERSION_CODES.
 /**
  * N MR1: 25
  */
-inline fun isNMR1OrLater(): Boolean = Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1
+inline fun isNMr1OrLater(): Boolean = Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1
 
 /**
  * O: 26
@@ -43,7 +43,7 @@ inline fun isOOrLater(): Boolean = Build.VERSION.SDK_INT >= Build.VERSION_CODES.
 /**
  * O MR1: 27
  */
-inline fun isOMr1orLater(): Boolean = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1
+inline fun isOMr1OrLater(): Boolean = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1
 
 /**
  * P: 28
