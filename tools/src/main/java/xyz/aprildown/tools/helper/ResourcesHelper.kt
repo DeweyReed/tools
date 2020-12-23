@@ -21,6 +21,7 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.DrawableCompat
+import com.google.android.material.color.MaterialColors
 import java.text.NumberFormat
 
 /**
@@ -81,12 +82,7 @@ fun Context.color(@ColorRes res: Int): Int = ContextCompat.getColor(this, res)
 
 @ColorInt
 fun Context.themeColor(@AttrRes attrRes: Int): Int {
-    val a = obtainStyledAttributes(null, intArrayOf(attrRes))
-    try {
-        return a.getColor(0, Color.RED)
-    } finally {
-        a.recycle()
-    }
+    return MaterialColors.getColor(this, attrRes, Color.RED)
 }
 
 fun @receiver:ColorInt Int.toColorStateList(): ColorStateList = ColorStateList.valueOf(this)
