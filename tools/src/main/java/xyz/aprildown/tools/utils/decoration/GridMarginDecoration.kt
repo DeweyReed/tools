@@ -70,9 +70,11 @@ class GridMarginDecoration(
                         if (verticalMargin != 0) {
                             outRect.top = verticalMargin
                         }
+                        outRect.bottom = margin / 2
                     }
                     position >= itemCount - spanCount -> {
                         // The last line
+                        outRect.top = margin / 2
                         if (verticalMargin != 0) {
                             outRect.bottom = verticalMargin
                         }
