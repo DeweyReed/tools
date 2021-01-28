@@ -64,9 +64,14 @@ fun Fragment.startActivitySafely(intent: Intent, @StringRes wrongMessageRes: Int
     }
 }
 
-val Fragment.isViewAlive: Boolean get() = view != null
+@Deprecated("Check Fragment.view directly", ReplaceWith(""))
+val Fragment.isViewAlive: Boolean
+    get() = view != null
+
+inline fun <reified T> Fragment.findCallback(): T? {
+    return (parentFragment as? T) ?: (context as? T ?: (activity as? T))
+}
 
 inline fun <reified T> Fragment.requireCallback(): T {
-    return (parentFragment as? T) ?: (context as? T ?: (activity as? T))
-    ?: throw IllegalStateException("Cannot find callback ${T::class}")
+    return findCallback() ?: throw IllegalStateException("Cannot find callback ${T::class}")
 }

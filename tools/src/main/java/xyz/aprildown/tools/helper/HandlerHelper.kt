@@ -15,4 +15,12 @@ object HandlerHelper {
             handler.post(runnable)
         }
     }
+
+    fun post(runnable: () -> Unit) {
+        handler.post(runnable)
+    }
+
+    fun postDelayed(delayMillis: Long, runnable: () -> Unit) {
+        handler.postDelayed(runnable, delayMillis)
+    }
 }

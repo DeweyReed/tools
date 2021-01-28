@@ -18,6 +18,7 @@
 
 package xyz.aprildown.tools.arch
 
+import androidx.annotation.MainThread
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
@@ -64,6 +65,7 @@ class EventObserver<T>(private val onEventUnhandledContent: (T) -> Unit) : Obser
     }
 }
 
+@Deprecated("Use liveData.observeEvent", ReplaceWith(""))
 fun <T> LifecycleOwner.observeEvent(
     liveData: LiveData<Event<T>>,
     body: (T) -> Unit
@@ -72,9 +74,26 @@ fun <T> LifecycleOwner.observeEvent(
     liveData.observe(this, EventObserver { body(it) })
 }
 
+@Deprecated("Use liveData.observeEvent", ReplaceWith(""))
 fun <T> Fragment.observeViewEvent(
     liveData: LiveData<Event<T>>,
     body: (T) -> Unit
 ) {
     viewLifecycleOwner.observeEvent(liveData, body)
+}
+
+/**
+ * From [androidx.lifecycle.observe].
+ */
+@MainThread
+inline fun <Data> LiveData<Event<Data>>.observeEvent(
+    owner: LifecycleOwner,
+    crossinline onChanged: (Data) -> Unit
+): Observer<Event<Data>> {
+    removeObservers(owner)
+    val wrappedObserver = EventObserver<Data> {
+        onChanged.invoke(it)
+    }
+    observe(owner, wrappedObserver)
+    return wrappedObserver
 }

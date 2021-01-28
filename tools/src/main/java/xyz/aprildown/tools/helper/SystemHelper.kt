@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.net.Uri
 import android.os.Binder
 import android.os.Build
@@ -26,6 +27,17 @@ import androidx.core.net.ConnectivityManagerCompat
 fun Context.isNetworkCheap(): Boolean {
     val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
     return !ConnectivityManagerCompat.isActiveNetworkMetered(cm)
+}
+
+fun Context.isNetworkConnected(): Boolean {
+    val cm = getSystemService<ConnectivityManager>() ?: return false
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        cm.getNetworkCapabilities(cm.activeNetwork)
+            ?.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) == true
+    } else {
+        @Suppress("DEPRECATION")
+        cm.activeNetworkInfo?.isConnectedOrConnecting == true
+    }
 }
 
 fun Context.isPipSupported(): Boolean {

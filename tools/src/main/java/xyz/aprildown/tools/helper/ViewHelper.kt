@@ -41,15 +41,6 @@ inline fun View.onLongClick(crossinline body: (View) -> Unit) {
     }
 }
 
-fun View.supportFullScreen() {
-    systemUiVisibility = View.SYSTEM_UI_FLAG_LOW_PROFILE or
-        View.SYSTEM_UI_FLAG_FULLSCREEN or
-        View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
-        View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or
-        View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
-        View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-}
-
 inline fun View.show() {
     visibility = View.VISIBLE
 }
@@ -111,12 +102,17 @@ infix fun TextView.setTextIfChanged(newText: CharSequence) {
 
 // region EditText
 
-fun EditText.onDoneClick(onDoneClick: () -> Unit) {
+/**
+ * @param targetActionId [EditorInfo.IME_ACTION_DONE], etc.
+ */
+fun EditText.onImeActionClick(targetActionId: Int, onClick: () -> Unit) {
     setOnEditorActionListener { _, actionId, _ ->
-        if (actionId == EditorInfo.IME_ACTION_DONE) {
-            onDoneClick.invoke()
+        if (actionId == targetActionId) {
+            onClick.invoke()
             true
-        } else false
+        } else {
+            false
+        }
     }
 }
 
