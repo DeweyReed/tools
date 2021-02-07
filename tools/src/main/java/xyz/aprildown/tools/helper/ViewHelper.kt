@@ -11,7 +11,6 @@ import android.text.TextWatcher
 import android.util.TypedValue
 import android.view.View
 import android.view.ViewPropertyAnimator
-import android.view.WindowManager
 import android.view.inputmethod.EditorInfo
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -26,7 +25,6 @@ import androidx.annotation.IdRes
 import androidx.core.view.GestureDetectorCompat
 import androidx.core.view.postDelayed
 import androidx.core.view.postOnAnimationDelayed
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayout
 import xyz.aprildown.tools.R
 
@@ -187,9 +185,6 @@ fun TimePicker.retrieveMinute(): Int = if (isMOrLater()) minute else currentMinu
 
 // endregion TimePicker
 
-fun BottomSheetDialog.noDim() = apply {
-    window?.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
-}
 
 // region Spinner
 

@@ -39,6 +39,7 @@ class EventLiveData<T> : MutableLiveData<EventLiveData.Event<T>>() {
     }
 }
 
+@Deprecated("Use Event directly.", ReplaceWith(""))
 fun <T> LifecycleOwner.observeEvent(
     liveData: LiveData<EventLiveData.Event<T>>,
     body: (T) -> Unit
@@ -51,6 +52,7 @@ fun <T> LifecycleOwner.observeEvent(
     })
 }
 
+@Deprecated("Use Event directly.", ReplaceWith(""))
 fun <T> Fragment.observeViewEvent(
     liveData: LiveData<EventLiveData.Event<T>>,
     body: (T) -> Unit

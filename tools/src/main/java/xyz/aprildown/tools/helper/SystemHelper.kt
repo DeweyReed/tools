@@ -5,18 +5,15 @@ package xyz.aprildown.tools.helper
 import android.app.Activity
 import android.app.AppOpsManager
 import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import android.net.Uri
 import android.os.Binder
 import android.os.Build
 import android.provider.Settings
 import android.view.View
 import android.view.ViewTreeObserver
 import android.view.inputmethod.InputMethodManager
-import androidx.annotation.RequiresApi
 import androidx.core.content.getSystemService
 import androidx.core.net.ConnectivityManagerCompat
 
@@ -86,7 +83,7 @@ fun View.focusAndShowKeyboard() {
 }
 
 fun Activity.hideKeyboard() {
-    val view = findViewById<View>(android.R.id.content)
+    val view = currentFocus ?: findViewById(android.R.id.content)
     if (view != null) {
         getSystemService<InputMethodManager>()?.hideSoftInputFromWindow(view.windowToken, 0)
     }
@@ -114,7 +111,3 @@ fun Context.canDrawOverlays(): Boolean = if (isMOrLater()) {
         false
     }
 }
-
-@RequiresApi(Build.VERSION_CODES.M)
-fun Context.overlayPermissionIntent(): Intent = Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION)
-    .setData(Uri.parse("package:$packageName"))

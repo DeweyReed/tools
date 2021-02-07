@@ -58,5 +58,4 @@ inline fun isQOrLater(): Boolean = Build.VERSION.SDK_INT >= Build.VERSION_CODES.
 /**
  * R: 30
  */
-inline fun isROrLater(): Boolean =
-    Build.VERSION.SDK_INT >= 30 // TODO: 2020/9/14 : Replace it with R.
+inline fun isROrLater(): Boolean = Build.VERSION.SDK_INT >= 30
