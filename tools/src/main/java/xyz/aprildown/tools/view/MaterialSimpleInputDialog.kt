@@ -7,6 +7,7 @@ import android.text.InputType
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
@@ -15,7 +16,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import xyz.aprildown.tools.R
 import xyz.aprildown.tools.helper.gone
-import xyz.aprildown.tools.helper.onDoneClick
+import xyz.aprildown.tools.helper.onImeActionClick
 import xyz.aprildown.tools.helper.setTextAndSelectEnd
 
 class MaterialSimpleInputDialog(
@@ -62,7 +63,7 @@ class MaterialSimpleInputDialog(
         }
 
         val positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
-        textInputEditText.onDoneClick {
+        textInputEditText.onImeActionClick(EditorInfo.IME_ACTION_DONE) {
             positiveButton.performClick()
         }
 
