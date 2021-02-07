@@ -4,7 +4,8 @@ buildscript {
     apply from: 'dependencies.gradle'
     repositories {
         google()
-        jcenter()
+        gradlePluginPortal()
+        mavenCentral()
         
     }
     dependencies {
@@ -23,7 +24,12 @@ apply plugin: "com.github.ben-manes.versions"
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
+        jcenter {
+            content {
+                includeGroup "org.jetbrains.trove4j"
+            }
+        }
         
     }
 }
