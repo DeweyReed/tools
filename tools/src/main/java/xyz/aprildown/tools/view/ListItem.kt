@@ -37,7 +37,7 @@ class ListItem(
         val secondaryText = sa.getString(R.styleable.ListItem_li_textSecondary)
         sa.recycle()
 
-        View.inflate(context, R.layout.list_item, this)
+        View.inflate(context, R.layout.view_list_item, this)
 
         primaryTextView = getChildAt(0) as TextView
         setPrimaryText(primaryText)

@@ -2,7 +2,6 @@
 
 package xyz.aprildown.tools.arch
 
-import androidx.collection.ArrayMap
 import androidx.collection.arrayMapOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -25,27 +24,18 @@ interface SaveInstanceHelper {
 }
 
 internal class SaveInstanceViewModel : ViewModel(), SaveInstanceHelper {
-    private lateinit var cachedData: ArrayMap<String, Any>
+    private val cachedData = arrayMapOf<String, Any>()
 
     override fun save(key: String, value: Any?) {
-        if (!::cachedData.isInitialized) {
-            cachedData = arrayMapOf()
-        }
         cachedData[key] = value
     }
 
     override fun <T> getAndRemove(key: String): T? {
-        return if (::cachedData.isInitialized) {
-            val value = cachedData[key]
-            cachedData.remove(key)
-            @Suppress("UNCHECKED_CAST")
-            value as? T
-        } else null
+        @Suppress("UNCHECKED_CAST")
+        return cachedData.remove(key) as? T
     }
 
     override fun onCleared() {
-        if (::cachedData.isInitialized) {
-            cachedData.clear()
-        }
+        cachedData.clear()
     }
 }

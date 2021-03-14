@@ -44,7 +44,7 @@ class ListItemWithLayout(
             divider = 0
         }
 
-        View.inflate(context, R.layout.list_item_with_layout, this)
+        View.inflate(context, R.layout.view_list_item_with_layout, this)
 
         listItem = getChildAt(0) as ListItem
         listItem.run {

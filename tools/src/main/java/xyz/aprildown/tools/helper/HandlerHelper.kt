@@ -20,7 +20,15 @@ object HandlerHelper {
         handler.post(runnable)
     }
 
+    fun post(runnable: Runnable) {
+        handler.post(runnable)
+    }
+
     fun postDelayed(delayMillis: Long, runnable: () -> Unit) {
         handler.postDelayed(runnable, delayMillis)
+    }
+
+    fun remove(runnable: Runnable) {
+        handler.removeCallbacks(runnable)
     }
 }
