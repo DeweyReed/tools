@@ -12,7 +12,7 @@ import android.os.Binder
 import android.os.Build
 import android.provider.Settings
 import android.view.View
-import android.view.ViewTreeObserver
+import android.view.ViewTreeObserver.OnWindowFocusChangeListener
 import android.view.inputmethod.InputMethodManager
 import androidx.core.content.getSystemService
 import androidx.core.net.ConnectivityManagerCompat
@@ -38,9 +38,8 @@ fun Context.isNetworkConnected(): Boolean {
 }
 
 fun Context.isPipSupported(): Boolean {
-    return isOOrLater() && packageManager.hasSystemFeature(
-        PackageManager.FEATURE_PICTURE_IN_PICTURE
-    )
+    return Build.VERSION.SDK_INT >= Build.VERSION_CODES.O &&
+        packageManager.hasSystemFeature(PackageManager.FEATURE_PICTURE_IN_PICTURE)
 }
 
 /**
@@ -69,7 +68,7 @@ fun View.focusAndShowKeyboard() {
     } else {
         // We need to wait until the window gets focus.
         viewTreeObserver.addOnWindowFocusChangeListener(
-            object : ViewTreeObserver.OnWindowFocusChangeListener {
+            object : OnWindowFocusChangeListener {
                 override fun onWindowFocusChanged(hasFocus: Boolean) {
                     // This notification will arrive just before the InputMethodManager gets set up.
                     if (hasFocus) {
@@ -89,25 +88,27 @@ fun Activity.hideKeyboard() {
     }
 }
 
-fun Context.canDrawOverlays(): Boolean = if (isMOrLater()) {
-    Settings.canDrawOverlays(this)
-} else {
-    try {
-        val manager = getSystemService(Context.APP_OPS_SERVICE) as AppOpsManager
-        val dispatchMethod = AppOpsManager::class.java.getMethod(
-            "checkOp",
-            Int::class.javaPrimitiveType,
-            Int::class.javaPrimitiveType,
-            String::class.java
-        )
-        // AppOpsManager.OP_SYSTEM_ALERT_WINDOW = 24
-        AppOpsManager.MODE_ALLOWED == dispatchMethod.invoke(
-            manager,
-            24,
-            Binder.getCallingUid(),
-            packageName
-        ) as Int
-    } catch (e: Exception) {
-        false
+fun Context.canDrawOverlays(): Boolean {
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        Settings.canDrawOverlays(this)
+    } else {
+        try {
+            val manager = getSystemService(Context.APP_OPS_SERVICE) as AppOpsManager
+            val dispatchMethod = AppOpsManager::class.java.getMethod(
+                "checkOp",
+                Int::class.javaPrimitiveType,
+                Int::class.javaPrimitiveType,
+                String::class.java
+            )
+            // AppOpsManager.OP_SYSTEM_ALERT_WINDOW = 24
+            AppOpsManager.MODE_ALLOWED == dispatchMethod.invoke(
+                manager,
+                24,
+                Binder.getCallingUid(),
+                packageName
+            ) as Int
+        } catch (e: Exception) {
+            false
+        }
     }
 }

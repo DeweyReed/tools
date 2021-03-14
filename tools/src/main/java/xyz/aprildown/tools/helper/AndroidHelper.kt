@@ -64,10 +64,6 @@ fun Fragment.startActivitySafely(intent: Intent, @StringRes wrongMessageRes: Int
     }
 }
 
-@Deprecated("Check Fragment.view directly", ReplaceWith(""))
-val Fragment.isViewAlive: Boolean
-    get() = view != null
-
 inline fun <reified T> Fragment.findCallback(): T? {
     return (parentFragment as? T) ?: (context as? T ?: (activity as? T))
 }

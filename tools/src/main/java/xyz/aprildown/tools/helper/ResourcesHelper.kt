@@ -37,13 +37,6 @@ import java.text.NumberFormat
 
 // region Resources
 
-@Deprecated("Use resource id to avoid proguard hell")
-@AnyRes
-inline fun Context.findResourceId(type: String, name: String, @AnyRes default: Int = 0): Int {
-    val id = resources.getIdentifier(name, type, packageName)
-    return if (id == 0) default else id
-}
-
 /**
  * Is -night resources used?
  */
@@ -70,8 +63,9 @@ fun Context.drawable(@DrawableRes res: Int): Drawable {
     return drawable
 }
 
-fun Drawable.tinted(@ColorInt color: Int): Drawable =
-    DrawableCompat.wrap(this).mutate().apply { setTint(color) }
+fun Drawable.tinted(@ColorInt color: Int): Drawable {
+    return DrawableCompat.wrap(this).mutate().apply { setTint(color) }
+}
 
 // endregion Drawable
 

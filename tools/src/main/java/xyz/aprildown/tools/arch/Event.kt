@@ -19,7 +19,6 @@
 package xyz.aprildown.tools.arch
 
 import androidx.annotation.MainThread
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
@@ -63,23 +62,6 @@ class EventObserver<T>(private val onEventUnhandledContent: (T) -> Unit) : Obser
             onEventUnhandledContent(value)
         }
     }
-}
-
-@Deprecated("Use liveData.observeEvent", ReplaceWith(""))
-fun <T> LifecycleOwner.observeEvent(
-    liveData: LiveData<Event<T>>,
-    body: (T) -> Unit
-) {
-    liveData.removeObservers(this)
-    liveData.observe(this, EventObserver { body(it) })
-}
-
-@Deprecated("Use liveData.observeEvent", ReplaceWith(""))
-fun <T> Fragment.observeViewEvent(
-    liveData: LiveData<Event<T>>,
-    body: (T) -> Unit
-) {
-    viewLifecycleOwner.observeEvent(liveData, body)
 }
 
 /**

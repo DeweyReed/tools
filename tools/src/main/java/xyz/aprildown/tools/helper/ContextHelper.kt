@@ -1,6 +1,7 @@
 package xyz.aprildown.tools.helper
 
 import android.content.Context
+import android.os.Build
 import androidx.core.content.ContextCompat
 
 /**
@@ -8,6 +9,8 @@ import androidx.core.content.ContextCompat
  */
 
 val Context.safeContext: Context
-    get() = takeIf { isNOrLater() && !isDeviceProtectedStorage }?.let {
-        ContextCompat.createDeviceProtectedStorageContext(it) ?: it
-    } ?: this
+    get() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) return this
+        if (!isDeviceProtectedStorage) return this
+        return ContextCompat.createDeviceProtectedStorageContext(this) ?: this
+    }

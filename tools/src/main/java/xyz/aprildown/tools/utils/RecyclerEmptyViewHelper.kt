@@ -20,17 +20,19 @@ fun RecyclerView.withEmptyView(emptyView: View) {
         }
     }
 
-    adapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
-        override fun onChanged() {
-            toggle()
-        }
+    adapter.registerAdapterDataObserver(
+        object : RecyclerView.AdapterDataObserver() {
+            override fun onChanged() {
+                toggle()
+            }
 
-        override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
-            toggle()
-        }
+            override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
+                toggle()
+            }
 
-        override fun onItemRangeRemoved(positionStart: Int, itemCount: Int) {
-            toggle()
+            override fun onItemRangeRemoved(positionStart: Int, itemCount: Int) {
+                toggle()
+            }
         }
-    })
+    )
 }

@@ -6,7 +6,7 @@ import android.os.Handler
 import android.os.Looper
 
 object HandlerHelper {
-    val handler by lazy { Handler(Looper.getMainLooper()) }
+    private val handler by lazy { Handler(Looper.getMainLooper()) }
 
     fun runOnUiThread(runnable: () -> Unit) {
         if (Looper.myLooper() === Looper.getMainLooper()) {

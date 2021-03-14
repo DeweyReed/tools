@@ -3,7 +3,6 @@
 package xyz.aprildown.tools.helper
 
 import android.annotation.SuppressLint
-import android.app.Dialog
 import android.graphics.drawable.Animatable
 import android.text.Editable
 import android.text.InputType
@@ -12,16 +11,10 @@ import android.util.TypedValue
 import android.view.View
 import android.view.ViewPropertyAnimator
 import android.view.inputmethod.EditorInfo
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.ScrollView
-import android.widget.SeekBar
-import android.widget.Spinner
 import android.widget.TextView
-import android.widget.TimePicker
-import androidx.annotation.IdRes
 import androidx.core.view.GestureDetectorCompat
 import androidx.core.view.postDelayed
 import androidx.core.view.postOnAnimationDelayed
@@ -152,9 +145,6 @@ abstract class AbstractOnTabSelectedListener : TabLayout.OnTabSelectedListener {
     override fun onTabSelected(tab: TabLayout.Tab) = Unit
 }
 
-fun <T : View> Dialog.requireViewByIdCompat(@IdRes idRes: Int): T =
-    findViewById(idRes) ?: throw IllegalStateException()
-
 // region Scroll
 
 fun ScrollView.scrollToBottom() {
@@ -167,57 +157,3 @@ fun ScrollView.scrollToBottom() {
 }
 
 // endregion Scroll
-
-// region TimePicker
-
-@Suppress("DEPRECATION")
-fun TimePicker.putHour(hour: Int): Unit = if (isMOrLater()) setHour(hour) else currentHour = hour
-
-@Suppress("DEPRECATION")
-fun TimePicker.retrieveHour(): Int = if (isMOrLater()) hour else currentHour
-
-@Suppress("DEPRECATION")
-fun TimePicker.putMinute(minute: Int): Unit =
-    if (isMOrLater()) setMinute(minute) else currentMinute = minute
-
-@Suppress("DEPRECATION")
-fun TimePicker.retrieveMinute(): Int = if (isMOrLater()) minute else currentMinute
-
-// endregion TimePicker
-
-
-// region Spinner
-
-fun Spinner.setItems(items: List<String>) {
-    adapter = ArrayAdapter(
-        context,
-        R.layout.support_simple_spinner_dropdown_item,
-        items
-    )
-}
-
-fun Spinner.setSelectIndex(index: Int) {
-    if (index in 0 until adapter.count) {
-        setSelection(index)
-    }
-}
-
-fun Spinner.setSelectedListener(listener: (spinner: Spinner, position: Int) -> Unit) {
-    onItemSelectedListener = object : AbstractOnItemSelectedListener() {
-        override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-            listener.invoke(this@setSelectedListener, position)
-        }
-    }
-}
-
-abstract class AbstractOnItemSelectedListener : AdapterView.OnItemSelectedListener {
-    override fun onNothingSelected(parent: AdapterView<*>?) = Unit
-}
-
-// endregion Spinner
-
-abstract class AbstractOnSeekBarChangeListener : SeekBar.OnSeekBarChangeListener {
-    override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) = Unit
-    override fun onStartTrackingTouch(seekBar: SeekBar) = Unit
-    override fun onStopTrackingTouch(seekBar: SeekBar) = Unit
-}
