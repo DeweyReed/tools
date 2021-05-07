@@ -6,8 +6,12 @@ import android.app.Activity
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.widget.Toast
+import androidx.annotation.Size
 import androidx.annotation.StringRes
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import xyz.aprildown.tools.R
 
@@ -48,6 +52,16 @@ fun Activity.restartWithFading(intent: Intent) {
     )
     finish()
     overridePendingTransition(R.anim.fade_in_short, R.anim.fade_out_short)
+}
+
+fun Context.hasPermissions(
+    @Size(min = 1) vararg permissions: String
+): Boolean {
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) return true
+
+    return permissions.all {
+        ContextCompat.checkSelfPermission(this, it) == PackageManager.PERMISSION_GRANTED
+    }
 }
 
 //
