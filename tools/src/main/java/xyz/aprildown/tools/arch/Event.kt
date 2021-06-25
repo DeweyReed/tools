@@ -21,6 +21,7 @@ package xyz.aprildown.tools.arch
 import androidx.annotation.MainThread
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 
 /**
@@ -78,4 +79,8 @@ inline fun <Data> LiveData<Event<Data>>.observeEvent(
     }
     observe(owner, wrappedObserver)
     return wrappedObserver
+}
+
+fun MutableLiveData<Event<Unit>>.call() {
+    value = Event(Unit)
 }
