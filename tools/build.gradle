@@ -1,10 +1,8 @@
-apply plugin: 'com.android.library'
-
-apply plugin: 'kotlin-android'
-
-apply plugin: 'com.github.dcendents.android-maven'
-
-group='com.github.DeweyReed'
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'maven-publish'
+}
 
 android {
     buildFeatures {
@@ -26,4 +24,18 @@ dependencies {
 
     implementation libs.material
 
+}
+
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = 'xyz.aprildown'
+                artifactId = 'tools'
+                version = '0.2.0'
+            }
+        }
+    }
 }

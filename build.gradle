@@ -14,8 +14,6 @@ buildscript {
 
         classpath "com.github.ben-manes:gradle-versions-plugin:${versions.versions}"
 
-        classpath "com.github.dcendents:android-maven-gradle-plugin:${versions.gradle_maven}"
-
     }
 }
 
@@ -25,12 +23,7 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        jcenter {
-            content {
-                includeGroup "org.jetbrains.trove4j"
-            }
-        }
-        
+
     }
 }
 

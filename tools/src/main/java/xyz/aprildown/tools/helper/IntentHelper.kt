@@ -2,7 +2,6 @@
 
 package xyz.aprildown.tools.helper
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -45,8 +44,8 @@ object IntentHelper {
         return intent
     }
 
-    fun share(activity: Activity, message: String = ""): Intent {
-        return ShareCompat.IntentBuilder.from(activity)
+    fun share(context: Context, message: String = ""): Intent {
+        return ShareCompat.IntentBuilder(context)
             .setType("text/plain")
             .setText(message)
             .createChooserIntent()
