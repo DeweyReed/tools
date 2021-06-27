@@ -8,9 +8,9 @@ import android.os.Looper
 object HandlerHelper {
     private val handler by lazy { Handler(Looper.getMainLooper()) }
 
-    fun runOnUiThread(runnable: () -> Unit) {
+    fun runOnUiThread(runnable: Runnable) {
         if (Looper.myLooper() === Looper.getMainLooper()) {
-            runnable.invoke()
+            runnable.run()
         } else {
             handler.post(runnable)
         }

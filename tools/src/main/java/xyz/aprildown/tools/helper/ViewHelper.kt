@@ -4,9 +4,7 @@ package xyz.aprildown.tools.helper
 
 import android.annotation.SuppressLint
 import android.graphics.drawable.Animatable
-import android.text.Editable
 import android.text.InputType
-import android.text.TextWatcher
 import android.util.TypedValue
 import android.view.View
 import android.view.ViewPropertyAnimator
@@ -129,12 +127,6 @@ fun EditText.showActionAndMultiLine(toImeOptions: Int) {
     // https://stackoverflow.com/a/41022589/5507158
     imeOptions = toImeOptions
     setRawInputType(InputType.TYPE_CLASS_TEXT)
-}
-
-abstract class AbstractTextWatcher : TextWatcher {
-    override fun afterTextChanged(s: Editable?) = Unit
-    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) = Unit
-    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) = Unit
 }
 
 // endregion EditText

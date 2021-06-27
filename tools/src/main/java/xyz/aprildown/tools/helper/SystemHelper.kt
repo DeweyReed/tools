@@ -2,15 +2,11 @@
 
 package xyz.aprildown.tools.helper
 
-import android.app.Activity
-import android.app.AppOpsManager
 import android.content.Context
 import android.content.pm.PackageManager
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import android.os.Binder
 import android.os.Build
-import android.provider.Settings
 import android.view.View
 import android.view.ViewTreeObserver.OnWindowFocusChangeListener
 import android.view.inputmethod.InputMethodManager
@@ -78,37 +74,5 @@ fun View.focusAndShowKeyboard() {
                     }
                 }
             })
-    }
-}
-
-fun Activity.hideKeyboard() {
-    val view = currentFocus ?: findViewById(android.R.id.content)
-    if (view != null) {
-        getSystemService<InputMethodManager>()?.hideSoftInputFromWindow(view.windowToken, 0)
-    }
-}
-
-fun Context.canDrawOverlays(): Boolean {
-    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-        Settings.canDrawOverlays(this)
-    } else {
-        try {
-            val manager = getSystemService(Context.APP_OPS_SERVICE) as AppOpsManager
-            val dispatchMethod = AppOpsManager::class.java.getMethod(
-                "checkOp",
-                Int::class.javaPrimitiveType,
-                Int::class.javaPrimitiveType,
-                String::class.java
-            )
-            // AppOpsManager.OP_SYSTEM_ALERT_WINDOW = 24
-            AppOpsManager.MODE_ALLOWED == dispatchMethod.invoke(
-                manager,
-                24,
-                Binder.getCallingUid(),
-                packageName
-            ) as Int
-        } catch (e: Exception) {
-            false
-        }
     }
 }

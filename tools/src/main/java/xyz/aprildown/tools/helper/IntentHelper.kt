@@ -1,4 +1,4 @@
-@file:Suppress("unused", "MemberVisibilityCanBePrivate")
+@file:Suppress("unused", "MemberVisibilityCanBePrivate", "QueryPermissionsNeeded")
 
 package xyz.aprildown.tools.helper
 
@@ -17,7 +17,7 @@ object IntentHelper {
 
     fun webPage(url: String) = intent(url)
 
-    fun playStoreAppPage(context: Context, name: String = context.packageName): Intent {
+    fun appStorePage(context: Context, name: String = context.packageName): Intent {
         val intent = intent("market://details?id=%s".format(name))
         return if (intent.resolveActivity(context.packageManager) != null) {
             intent
@@ -26,7 +26,7 @@ object IntentHelper {
         }
     }
 
-    fun playStoreAppsList(context: Context, name: String): Intent {
+    fun appStoreDeveloperAppsPage(context: Context, name: String): Intent {
         val intent = intent("market://search?q=pub:%s".format(name))
         return if (intent.resolveActivity(context.packageManager) != null) {
             intent
@@ -35,16 +35,20 @@ object IntentHelper {
         }
     }
 
-    fun email(email: String, subject: String = "", message: String = ""): Intent {
+    fun email(email: String, subject: String? = null, message: String? = null): Intent {
         val intent = Intent(Intent.ACTION_SENDTO)
         intent.data = Uri.parse("mailto:") // only email apps should handle this
         intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(email))
-        intent.putExtra(Intent.EXTRA_SUBJECT, subject)
-        intent.putExtra(Intent.EXTRA_TEXT, message)
+        if (subject != null) {
+            intent.putExtra(Intent.EXTRA_SUBJECT, subject)
+        }
+        if (message != null) {
+            intent.putExtra(Intent.EXTRA_TEXT, message)
+        }
         return intent
     }
 
-    fun share(context: Context, message: String = ""): Intent {
+    fun share(context: Context, message: String): Intent {
         return ShareCompat.IntentBuilder(context)
             .setType("text/plain")
             .setText(message)

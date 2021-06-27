@@ -9,4 +9,3 @@ package xyz.aprildown.tools.helper
 fun Boolean.toInt(): Int = if (this) 1 else 0
 
 fun Int.toBoolean(): Boolean = this != 0
-
