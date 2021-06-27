@@ -10,6 +10,7 @@ import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.net.Uri
+import android.util.TypedValue
 import androidx.annotation.AnyRes
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
@@ -21,7 +22,6 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.DrawableCompat
-import com.google.android.material.color.MaterialColors
 import java.text.NumberFormat
 
 /**
@@ -74,9 +74,22 @@ fun Drawable.tinted(@ColorInt color: Int): Drawable {
 @ColorInt
 fun Context.color(@ColorRes res: Int): Int = ContextCompat.getColor(this, res)
 
+/**
+ * Best implementation I've found.
+ * https://github.com/mikepenz/MaterialDrawer/blob/develop/materialdrawer/src/main/java/com/mikepenz/materialdrawer/util/Utils.kt#L114
+ */
 @ColorInt
 fun Context.themeColor(@AttrRes attrRes: Int): Int {
-    return MaterialColors.getColor(this, attrRes, Color.RED)
+    val tv = TypedValue()
+    return if (theme.resolveAttribute(attrRes, tv, true)) {
+        if (tv.resourceId != 0) {
+            ResourcesCompat.getColor(resources, tv.resourceId, theme)
+        } else {
+            tv.data
+        }
+    } else {
+        Color.RED
+    }
 }
 
 fun @receiver:ColorInt Int.toColorStateList(): ColorStateList = ColorStateList.valueOf(this)
