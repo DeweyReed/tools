@@ -17,7 +17,7 @@ import androidx.preference.PreferenceManager
 val Context.safeContext: Context
     get() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) return this
-        if (!isDeviceProtectedStorage) return this
+        if (isDeviceProtectedStorage) return this
         return ContextCompat.createDeviceProtectedStorageContext(this) ?: this
     }
 
