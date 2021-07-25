@@ -26,7 +26,7 @@ object IntentHelper {
         }
     }
 
-    fun appStoreDeveloperAppsPage(context: Context, name: String): Intent {
+    fun appStoreDeveloperPage(context: Context, name: String): Intent {
         val intent = intent("market://search?q=pub:%s".format(name))
         return if (intent.resolveActivity(context.packageManager) != null) {
             intent

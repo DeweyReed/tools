@@ -25,7 +25,10 @@ fun SharedPreferences.getNonNullString(name: String, default: String): String {
     return getString(name, default) ?: default
 }
 
-fun SharedPreferences.getNonNullStringSet(name: String, default: Set<String>): Set<String> {
+fun SharedPreferences.getNonNullStringSet(
+    name: String,
+    default: Set<String> = emptySet()
+): Set<String> {
     return getStringSet(name, default) ?: default
 }
 
