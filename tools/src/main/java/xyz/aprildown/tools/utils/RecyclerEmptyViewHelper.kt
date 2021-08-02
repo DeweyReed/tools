@@ -3,24 +3,16 @@
 package xyz.aprildown.tools.utils
 
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
-import xyz.aprildown.tools.helper.gone
-import xyz.aprildown.tools.helper.show
 
-fun RecyclerView.withEmptyView(emptyView: View) {
-    val adapter = adapter ?: throw IllegalStateException("Set adapter before using empty view")
+fun RecyclerView.Adapter<*>.withEmptyView(emptyView: View) {
 
     fun toggle() {
-        if (adapter.itemCount == 0) {
-            emptyView.show()
-            this.gone()
-        } else {
-            this.show()
-            emptyView.gone()
-        }
+        emptyView.isVisible = itemCount == 0
     }
 
-    adapter.registerAdapterDataObserver(
+    registerAdapterDataObserver(
         object : RecyclerView.AdapterDataObserver() {
             override fun onChanged() {
                 toggle()
