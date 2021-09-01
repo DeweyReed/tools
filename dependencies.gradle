@@ -9,6 +9,9 @@ ext {
             compile_sdk : 30,
             min_sdk     : 21,
             target_sdk  : 30,
+
+            version_code: 23,
+            version_name: '0.2.3',
     ]
     //noinspection SpellCheckingInspection
     libs = [
