@@ -34,7 +34,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'xyz.aprildown'
                 artifactId = 'tools'
-                version = '0.2.3'
+                version = '0.2.4'
             }
         }
     }
