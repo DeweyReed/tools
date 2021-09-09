@@ -3,7 +3,6 @@
 package xyz.aprildown.tools.helper
 
 import android.content.Context
-import android.content.pm.PackageManager
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
@@ -31,11 +30,6 @@ fun Context.isNetworkConnected(): Boolean {
         @Suppress("DEPRECATION")
         cm.activeNetworkInfo?.isConnectedOrConnecting == true
     }
-}
-
-fun Context.isPipSupported(): Boolean {
-    return Build.VERSION.SDK_INT >= Build.VERSION_CODES.O &&
-        packageManager.hasSystemFeature(PackageManager.FEATURE_PICTURE_IN_PICTURE)
 }
 
 /**
