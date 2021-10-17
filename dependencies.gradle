@@ -1,10 +1,9 @@
 ext {
     //noinspection SpellCheckingInspection
     versions = [
-            agp         : '4.2.2',
-            kotlin      : '1.5.30',
+            agp         : '7.0.3',
+            kotlin      : '1.5.31',
             versions    : '0.39.0',
-            gradle_maven: '2.1',
 
             compile_sdk : 30,
             min_sdk     : 21,
@@ -27,7 +26,7 @@ ext {
             androidx_lifecycle_livedata : 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1',
             androidx_lifecycle_viewmodel: 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1',
             androidx_lifecycle_compiler : 'androidx.lifecycle:lifecycle-common-java8:2.3.1',
-            androidx_media              : 'androidx.media:media:1.4.1',
+            androidx_media              : 'androidx.media:media:1.4.3',
             // KTX
             androidx_core_ktx           : 'androidx.core:core-ktx:1.6.0',
             androidx_collection_ktx     : 'androidx.collection:collection-ktx:1.1.0',
