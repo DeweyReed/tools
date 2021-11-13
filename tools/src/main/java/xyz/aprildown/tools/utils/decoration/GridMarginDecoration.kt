@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
  * Requires spanSize == 1.
  */
 class GridMarginDecoration(
-    @Px private val margin: Int,
     @Px private val horizontalMargin: Int = 0,
     @Px private val verticalMargin: Int = 0,
 ) : RecyclerView.ItemDecoration() {
@@ -26,65 +25,24 @@ class GridMarginDecoration(
         super.getItemOffsets(outRect, view, parent, state)
 
         val lm = parent.layoutManager as? GridLayoutManager ?: return
-        val position = parent.getChildAdapterPosition(view)
         val itemCount = lm.itemCount
+        if (itemCount <= 1) return
+
         val spanCount = lm.spanCount
+        val position = parent.getChildAdapterPosition(view)
 
-        // Handle other items
-
-        fun applyHorizontalMargin() {
-            when (position % spanCount) {
-                0 -> {
-                    if (horizontalMargin != 0) {
-                        outRect.left = horizontalMargin
-                    }
-                    outRect.right = margin / 2
-                }
-                spanCount - 1 -> {
-                    outRect.left = margin / 2
-                    if (horizontalMargin != 0) {
-                        outRect.right = horizontalMargin
-                    }
-                }
-                else -> {
-                    outRect.left = margin / 2
-                    outRect.right = margin / 2
-                }
-            }
+        val horizontalPosition = position % spanCount
+        if (horizontalPosition < spanCount - 1) {
+            outRect.right = horizontalMargin
         }
 
-        when {
-            itemCount == 0 -> return
-            itemCount <= spanCount -> {
-                applyHorizontalMargin()
-                if (verticalMargin != 0) {
-                    outRect.top = verticalMargin
-                    outRect.bottom = verticalMargin
-                }
-            }
-            itemCount > spanCount -> {
-                applyHorizontalMargin()
-                when {
-                    position < spanCount -> {
-                        // The first line
-                        if (verticalMargin != 0) {
-                            outRect.top = verticalMargin
-                        }
-                        outRect.bottom = margin / 2
-                    }
-                    position >= itemCount - spanCount -> {
-                        // The last line
-                        outRect.top = margin / 2
-                        if (verticalMargin != 0) {
-                            outRect.bottom = verticalMargin
-                        }
-                    }
-                    else -> {
-                        outRect.top = margin / 2
-                        outRect.bottom = margin / 2
-                    }
-                }
-            }
+        var lines = itemCount / spanCount
+        if (horizontalPosition > 0) {
+            ++lines
+        }
+
+        if (position / spanCount < lines - 1) {
+            outRect.bottom = verticalMargin
         }
     }
 }

@@ -105,7 +105,7 @@ fun EditText.onImeActionClick(targetActionId: Int, onClick: () -> Unit) {
     }
 }
 
-fun EditText.setTextAndSelectEnd(text: String) {
+fun EditText.setTextAndSelectEnd(text: CharSequence) {
     setText(text)
     text.length.let {
         if (it > 0) {

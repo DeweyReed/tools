@@ -13,14 +13,8 @@ class DividerItemDecorationWithMargin(
 ) : DividerItemDecoration(context, orientation) {
 
     init {
-        // The divider resource is from DividerItemDecoration
-        val a = context.obtainStyledAttributes(intArrayOf(android.R.attr.listDivider))
-        val divider = a.getDrawable(0)
-        a.recycle()
-
         val inset = context.resources.getDimensionPixelSize(R.dimen.keyline_icon)
-        val insetDivider = InsetDrawable(divider, inset, 0, inset, 0)
-
+        val insetDivider = InsetDrawable(drawable, inset, 0, inset, 0)
         setDrawable(insetDivider)
     }
 }

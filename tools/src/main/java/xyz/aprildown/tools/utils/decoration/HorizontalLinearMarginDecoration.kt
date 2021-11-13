@@ -8,8 +8,7 @@ import androidx.annotation.Px
 import androidx.recyclerview.widget.RecyclerView
 
 class HorizontalLinearMarginDecoration(
-    @Px private val margin: Int,
-    @Px private val edgeMargin: Int = 0,
+    @Px private val margin: Int
 ) : RecyclerView.ItemDecoration() {
 
     override fun getItemOffsets(
@@ -20,33 +19,11 @@ class HorizontalLinearMarginDecoration(
     ) {
         super.getItemOffsets(outRect, view, parent, state)
 
-        val lm = parent.layoutManager ?: return
-        val position = parent.getChildAdapterPosition(view)
-        val itemCount = lm.itemCount
+        val itemCount = parent.adapter?.itemCount ?: 0
+        if (itemCount <= 1) return
 
-        when {
-            itemCount == 0 -> return
-            itemCount == 1 && edgeMargin == 0 -> return
-            itemCount == 1 && edgeMargin != 0 -> {
-                outRect.left = edgeMargin
-                outRect.right = edgeMargin
-            }
-            position == 0 -> {
-                if (edgeMargin != 0) {
-                    outRect.left = edgeMargin
-                }
-                outRect.right = margin / 2
-            }
-            position == itemCount - 1 -> {
-                if (edgeMargin != 0) {
-                    outRect.right = edgeMargin
-                }
-                outRect.left = margin / 2
-            }
-            else -> {
-                outRect.left = margin / 2
-                outRect.right = margin / 2
-            }
+        if (parent.getChildAdapterPosition(view) < itemCount - 1) {
+            outRect.right = margin
         }
     }
 }
