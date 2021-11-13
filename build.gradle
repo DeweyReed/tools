@@ -6,7 +6,7 @@ buildscript {
         google()
         gradlePluginPortal()
         mavenCentral()
-        
+
     }
     dependencies {
         classpath "com.android.tools.build:gradle:${versions.agp}"
