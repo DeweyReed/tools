@@ -8,12 +8,12 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
-import android.widget.Toast
 import androidx.annotation.Size
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import xyz.aprildown.tools.R
+import xyz.aprildown.tools.anko.longToast
 
 /**
  * Created on 2018/3/12.
@@ -55,12 +55,12 @@ fun Context.pendingActivityIntent(intent: Intent, requestCode: Int = 0): Pending
 // Activity
 //
 
-fun Context.startActivitySafely(intent: Intent, @StringRes wrongMessageRes: Int = 0) {
+fun Context.startActivityOrNothing(intent: Intent, @StringRes wrongMessageRes: Int = 0) {
     try {
         startActivity(intent)
     } catch (e: Exception) {
         if (wrongMessageRes != 0) {
-            Toast.makeText(this, wrongMessageRes, Toast.LENGTH_LONG).show()
+            longToast(wrongMessageRes)
         }
     }
 }
@@ -88,12 +88,12 @@ fun Context.hasPermissions(
 // Fragment
 //
 
-fun Fragment.startActivitySafely(intent: Intent, @StringRes wrongMessageRes: Int = 0) {
+fun Fragment.startActivityOrNothing(intent: Intent, @StringRes wrongMessageRes: Int = 0) {
     try {
         startActivity(intent)
     } catch (e: Exception) {
         if (wrongMessageRes != 0) {
-            Toast.makeText(requireContext(), wrongMessageRes, Toast.LENGTH_LONG).show()
+            longToast(wrongMessageRes)
         }
     }
 }
