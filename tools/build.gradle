@@ -22,6 +22,8 @@ dependencies {
 
     implementation libs.material
 
+    implementation libs.toast_compat
+
 }
 
 
