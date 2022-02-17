@@ -2,7 +2,7 @@
 
 Personal android tools code.
 
-[Install from JitPack](https://jitpack.io/#xyz.aprildown/tools)
+[Install from JitPack](https://jitpack.io/#com.github.DeweyReed/tools)
 
 ## License
 

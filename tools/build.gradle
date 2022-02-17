@@ -32,7 +32,7 @@ afterEvaluate {
         publications {
             release(MavenPublication) {
                 from components.release
-                groupId = 'xyz.aprildown'
+                groupId = 'com.github.DeweyReed'
                 artifactId = 'tools'
                 version = '0.3.1'
             }
