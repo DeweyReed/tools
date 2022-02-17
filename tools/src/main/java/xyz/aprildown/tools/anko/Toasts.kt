@@ -7,7 +7,6 @@ import android.os.Build
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.StringRes
-import androidx.fragment.app.Fragment
 import me.drakeet.support.toast.ToastCompat
 
 private fun Context.createToast(
@@ -51,16 +50,6 @@ fun Context.longToast(@StringRes message: Int): Toast {
 fun Context.longToast(message: CharSequence): Toast {
     return createToast(message = message, duration = Toast.LENGTH_LONG).apply { show() }
 }
-
-// endregion
-
-// region Fragment
-
-fun Fragment.toast(@StringRes message: Int): Toast = requireContext().toast(message)
-fun Fragment.toast(message: CharSequence): Toast = requireContext().toast(message)
-
-fun Fragment.longToast(@StringRes message: Int): Toast = requireContext().longToast(message)
-fun Fragment.longToast(message: CharSequence): Toast = requireContext().longToast(message)
 
 // endregion
 
