@@ -93,7 +93,7 @@ fun Fragment.startActivityOrNothing(intent: Intent, @StringRes wrongMessageRes: 
         startActivity(intent)
     } catch (e: Exception) {
         if (wrongMessageRes != 0) {
-            longToast(wrongMessageRes)
+            context?.longToast(wrongMessageRes)
         }
     }
 }
