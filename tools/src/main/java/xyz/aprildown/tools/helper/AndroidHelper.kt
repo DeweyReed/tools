@@ -23,17 +23,20 @@ import xyz.aprildown.tools.anko.longToast
 // PendingIntent
 //
 
+object PendingIntentCompat {
+    val FLAG_IMMUTABLE: Int = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        PendingIntent.FLAG_IMMUTABLE
+    } else {
+        0
+    }
+}
+
 fun Context.pendingServiceIntent(intent: Intent, requestCode: Int = 0): PendingIntent {
     return PendingIntent.getService(
         this,
         requestCode,
         intent,
-        PendingIntent.FLAG_UPDATE_CURRENT or
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                PendingIntent.FLAG_IMMUTABLE
-            } else {
-                0
-            }
+        PendingIntent.FLAG_UPDATE_CURRENT or PendingIntentCompat.FLAG_IMMUTABLE
     )
 }
 
@@ -42,12 +45,7 @@ fun Context.pendingActivityIntent(intent: Intent, requestCode: Int = 0): Pending
         this,
         requestCode,
         intent,
-        PendingIntent.FLAG_UPDATE_CURRENT or
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                PendingIntent.FLAG_IMMUTABLE
-            } else {
-                0
-            }
+        PendingIntent.FLAG_UPDATE_CURRENT or PendingIntentCompat.FLAG_IMMUTABLE
     )
 }
 
