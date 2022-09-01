@@ -45,14 +45,6 @@ subprojects {
                     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
                     vectorDrawables.useSupportLibrary true
                 }
-
-                compileOptions {
-                    sourceCompatibility JavaVersion.VERSION_1_8
-                    targetCompatibility JavaVersion.VERSION_1_8
-                }
-                kotlinOptions {
-                    jvmTarget = JavaVersion.VERSION_1_8.toString()
-                }
             }
         }
         if (project.plugins.hasPlugin("kotlin-kapt")) {
@@ -60,7 +52,6 @@ subprojects {
                 javacOptions {
                     option("-Xmaxerrs", 500)
                 }
-                useBuildCache = true
             }
         }
     }
