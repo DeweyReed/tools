@@ -28,6 +28,6 @@ ext {
             // Material
             material                    : 'com.google.android.material:material:1.4.0',
 
-            toast_compat                : 'me.drakeet.support:toastcompat:1.1.0',
+            toast_compat                : 'com.github.DeweyReed:ToastCompat:d0a4d6cac3',
     ]
 }
