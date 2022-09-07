@@ -121,6 +121,25 @@ object ThemeColorUtils {
     }
 
     /**
+     * Set the alpha bytes of a color
+     *
+     * @param color The color to set the alpha
+     * @param to 0.0f - 1.0f
+     * @return The new color value
+     */
+    @ColorInt
+    fun setAlpha(
+        @ColorInt color: Int,
+        @FloatRange(from = 0.0, to = 1.0) to: Float
+    ): Int {
+        val alpha = (255 * to).roundToInt()
+        val red = Color.red(color)
+        val green = Color.green(color)
+        val blue = Color.blue(color)
+        return Color.argb(alpha, red, green, blue)
+    }
+
+    /**
      * Manipulate the alpha bytes of a color
      *
      * @param color The color to adjust the alpha on
