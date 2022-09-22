@@ -85,7 +85,7 @@ fun GestureDetectorCompat.attachToView(view: View) {
 // TextView
 //
 
-infix fun TextView.setTextIfChanged(newText: CharSequence) {
+infix fun TextView.setTextIfChanged(newText: CharSequence?) {
     if (text != newText) text = newText
 }
 
@@ -105,9 +105,9 @@ fun EditText.onImeActionClick(targetActionId: Int, onClick: () -> Unit) {
     }
 }
 
-fun EditText.setTextAndSelectEnd(text: CharSequence) {
+fun EditText.setTextAndSelectEnd(text: CharSequence?) {
     setText(text)
-    text.length.let {
+    text?.length?.let {
         if (it > 0) {
             post {
                 try {
