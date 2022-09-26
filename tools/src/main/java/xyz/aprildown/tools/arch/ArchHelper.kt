@@ -8,6 +8,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import androidx.lifecycle.SavedStateHandle
+import kotlin.properties.ReadWriteProperty
+import kotlin.reflect.KProperty
 
 /**
  * From [androidx.lifecycle.observe].
@@ -71,4 +74,16 @@ fun Lifecycle.doOnLifecycleEvent(
 
 fun Lifecycle.doOnDestroy(block: () -> Unit) {
     doOnLifecycleEvent(onDestroy = block)
+}
+
+fun <T> SavedStateHandle.value(key: String): ReadWriteProperty<Any?, T?> {
+    return object : ReadWriteProperty<Any?, T?> {
+        override fun getValue(thisRef: Any?, property: KProperty<*>): T? {
+            return get(key)
+        }
+
+        override fun setValue(thisRef: Any?, property: KProperty<*>, value: T?) {
+            set(key, value)
+        }
+    }
 }
