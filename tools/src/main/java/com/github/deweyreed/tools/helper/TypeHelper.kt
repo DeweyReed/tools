@@ -1,6 +1,6 @@
 @file:Suppress("NOTHING_TO_INLINE", "unused")
 
-package xyz.aprildown.tools.helper
+package com.github.deweyreed.tools.helper
 
 /**
  * Created on 2017/12/3.

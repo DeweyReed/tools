@@ -1,6 +1,6 @@
 @file:Suppress("unused")
 
-package xyz.aprildown.tools.helper
+package com.github.deweyreed.tools.helper
 
 import android.os.Handler
 import android.os.Looper

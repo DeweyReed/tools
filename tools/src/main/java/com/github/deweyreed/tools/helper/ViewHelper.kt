@@ -1,6 +1,6 @@
 @file:Suppress("NOTHING_TO_INLINE", "unused")
 
-package xyz.aprildown.tools.helper
+package com.github.deweyreed.tools.helper
 
 import android.annotation.SuppressLint
 import android.graphics.drawable.Animatable
@@ -16,8 +16,8 @@ import android.widget.TextView
 import androidx.core.view.GestureDetectorCompat
 import androidx.core.view.postDelayed
 import androidx.core.view.postOnAnimationDelayed
+import com.github.deweyreed.tools.R
 import com.google.android.material.tabs.TabLayout
-import xyz.aprildown.tools.R
 
 /**
  * Created on 2017/11/5.

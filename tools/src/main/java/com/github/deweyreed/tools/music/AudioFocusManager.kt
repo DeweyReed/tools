@@ -1,6 +1,6 @@
 @file:Suppress("unused")
 
-package xyz.aprildown.tools.music
+package com.github.deweyreed.tools.music
 
 import android.media.AudioManager
 import androidx.media.AudioAttributesCompat

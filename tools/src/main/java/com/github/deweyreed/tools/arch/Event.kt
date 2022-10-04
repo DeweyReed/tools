@@ -16,7 +16,7 @@
 
 @file:Suppress("unused", "MemberVisibilityCanBePrivate")
 
-package xyz.aprildown.tools.arch
+package com.github.deweyreed.tools.arch
 
 import androidx.annotation.MainThread
 import androidx.lifecycle.LifecycleOwner

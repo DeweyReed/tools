@@ -1,6 +1,6 @@
 @file:Suppress("unused")
 
-package xyz.aprildown.tools.helper
+package com.github.deweyreed.tools.helper
 
 import android.app.Activity
 import android.app.PendingIntent
@@ -12,8 +12,8 @@ import androidx.annotation.Size
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import xyz.aprildown.tools.R
-import xyz.aprildown.tools.anko.longToast
+import com.github.deweyreed.tools.R
+import com.github.deweyreed.tools.anko.longToast
 
 /**
  * Created on 2018/3/12.

@@ -1,6 +1,6 @@
 @file:Suppress("unused")
 
-package xyz.aprildown.tools.helper
+package com.github.deweyreed.tools.helper
 
 import androidx.annotation.FloatRange
 import com.google.android.material.math.MathUtils

@@ -16,7 +16,7 @@
 
 @file:Suppress("SpellCheckingInspection", "unused", "MemberVisibilityCanBePrivate")
 
-package xyz.aprildown.tools.utils
+package com.github.deweyreed.tools.utils
 
 import android.graphics.Color
 import androidx.annotation.ColorInt

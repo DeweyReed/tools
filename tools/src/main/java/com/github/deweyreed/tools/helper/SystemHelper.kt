@@ -1,6 +1,6 @@
 @file:Suppress("unused")
 
-package xyz.aprildown.tools.helper
+package com.github.deweyreed.tools.helper
 
 import android.content.Context
 import android.net.ConnectivityManager

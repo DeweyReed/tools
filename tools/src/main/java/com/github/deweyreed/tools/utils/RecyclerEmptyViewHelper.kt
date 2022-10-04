@@ -1,6 +1,6 @@
 @file:Suppress("unused")
 
-package xyz.aprildown.tools.utils
+package com.github.deweyreed.tools.utils
 
 import android.view.View
 import androidx.core.view.isVisible

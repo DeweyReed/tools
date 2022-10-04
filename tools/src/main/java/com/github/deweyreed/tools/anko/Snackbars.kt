@@ -1,6 +1,6 @@
 @file:Suppress("NOTHING_TO_INLINE", "unused")
 
-package xyz.aprildown.tools.anko
+package com.github.deweyreed.tools.anko
 
 import android.view.View
 import androidx.annotation.StringRes

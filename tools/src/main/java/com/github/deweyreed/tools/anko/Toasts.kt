@@ -1,6 +1,6 @@
 @file:Suppress("unused")
 
-package xyz.aprildown.tools.anko
+package com.github.deweyreed.tools.anko
 
 import android.content.Context
 import android.os.Build

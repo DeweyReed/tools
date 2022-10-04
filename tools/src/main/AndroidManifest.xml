@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="xyz.aprildown.tools">
+    package="com.github.deweyreed.tools">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
