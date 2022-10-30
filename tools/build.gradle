@@ -16,7 +16,6 @@ dependencies {
     implementation libs.androidx_lifecycle_runtime
     implementation libs.androidx_lifecycle_livedata
     implementation libs.androidx_lifecycle_viewmodel
-    implementation libs.androidx_media
     implementation libs.androidx_core_ktx
     implementation libs.androidx_collection_ktx
 

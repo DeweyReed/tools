@@ -20,7 +20,6 @@ ext {
             androidx_lifecycle_runtime  : 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1',
             androidx_lifecycle_livedata : 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1',
             androidx_lifecycle_viewmodel: 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1',
-            androidx_media              : 'androidx.media:media:1.6.0',
             // KTX
             androidx_core_ktx           : 'androidx.core:core-ktx:1.9.0',
             androidx_collection_ktx     : 'androidx.collection:collection-ktx:1.2.0',
