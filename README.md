@@ -8,7 +8,10 @@ Personal android tools code.
 
 ### 0.6.0
 
+- Added the support for Android 13
 - Rename the package name from `xyz.aprildown` to `com.github.deweyreed`
+- Added compatible methods for `Bundle`, `Intent` and `PackageManager`
+- Removed `AudioFocusManager`
 
 ### 0.5.0
 
