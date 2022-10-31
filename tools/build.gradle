@@ -5,6 +5,7 @@ plugins {
 }
 
 android {
+    namespace 'com.github.deweyreed.tools'
     buildFeatures {
         buildConfig false
     }
