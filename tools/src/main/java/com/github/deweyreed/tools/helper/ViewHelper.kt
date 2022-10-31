@@ -16,7 +16,6 @@ import android.widget.TextView
 import androidx.core.view.GestureDetectorCompat
 import androidx.core.view.postDelayed
 import androidx.core.view.postOnAnimationDelayed
-import com.github.deweyreed.tools.R
 import com.google.android.material.tabs.TabLayout
 
 /**
@@ -49,7 +48,11 @@ inline fun View.setScale(value: Float) {
 
 fun View.setSelectableItemBackground() {
     val outValue = TypedValue()
-    context.theme.resolveAttribute(R.attr.selectableItemBackground, outValue, true)
+    context.theme.resolveAttribute(
+        androidx.appcompat.R.attr.selectableItemBackground,
+        outValue,
+        true
+    )
     setBackgroundResource(outValue.resourceId)
 }
 
