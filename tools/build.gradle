@@ -9,6 +9,12 @@ android {
     buildFeatures {
         buildConfig false
     }
+
+    publishing {
+        singleVariant('release') {
+            withSourcesJar()
+        }
+    }
 }
 
 dependencies {
@@ -26,15 +32,15 @@ dependencies {
 
 }
 
+publishing {
+    publications {
+        release(MavenPublication) {
+            groupId = 'com.github.DeweyReed'
+            artifactId = 'tools'
+            version = versions.version_name
 
-afterEvaluate {
-    publishing {
-        publications {
-            release(MavenPublication) {
+            afterEvaluate {
                 from components.release
-                groupId = 'com.github.DeweyReed'
-                artifactId = 'tools'
-                version = versions.version_name
             }
         }
     }
