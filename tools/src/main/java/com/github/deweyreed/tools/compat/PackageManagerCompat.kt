@@ -26,3 +26,13 @@ fun PackageManager.queryIntentActivitiesCompat(intent: Intent, flags: Long): Lis
         queryIntentActivities(intent, flags.toInt())
     }
 }
+
+fun PackageManager.getInstalledPackages(flags: Long): List<PackageInfo> {
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        @Suppress("QueryPermissionsNeeded")
+        getInstalledPackages(PackageManager.PackageInfoFlags.of(flags))
+    } else {
+        @Suppress("DEPRECATION", "QueryPermissionsNeeded")
+        getInstalledPackages(flags.toInt())
+    }
+}
