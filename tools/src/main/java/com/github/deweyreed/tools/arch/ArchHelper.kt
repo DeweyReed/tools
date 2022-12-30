@@ -5,6 +5,7 @@ package com.github.deweyreed.tools.arch
 import androidx.annotation.MainThread
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
@@ -36,44 +37,44 @@ fun Lifecycle.doOnLifecycleEvent(
     onPause: (() -> Unit)? = null,
     onStop: (() -> Unit)? = null,
     onDestroy: (() -> Unit)? = null,
-) {
-    addObserver(
-        object : DefaultLifecycleObserver {
-            override fun onCreate(owner: LifecycleOwner) {
-                super.onCreate(owner)
-                onCreate?.invoke()
-            }
-
-            override fun onStart(owner: LifecycleOwner) {
-                super.onStart(owner)
-                onStart?.invoke()
-            }
-
-            override fun onResume(owner: LifecycleOwner) {
-                super.onResume(owner)
-                onResume?.invoke()
-            }
-
-            override fun onPause(owner: LifecycleOwner) {
-                super.onPause(owner)
-                onPause?.invoke()
-            }
-
-            override fun onStop(owner: LifecycleOwner) {
-                super.onStop(owner)
-                onStop?.invoke()
-            }
-
-            override fun onDestroy(owner: LifecycleOwner) {
-                super.onDestroy(owner)
-                onDestroy?.invoke()
-            }
+): LifecycleObserver {
+    val observer = object : DefaultLifecycleObserver {
+        override fun onCreate(owner: LifecycleOwner) {
+            super.onCreate(owner)
+            onCreate?.invoke()
         }
-    )
+
+        override fun onStart(owner: LifecycleOwner) {
+            super.onStart(owner)
+            onStart?.invoke()
+        }
+
+        override fun onResume(owner: LifecycleOwner) {
+            super.onResume(owner)
+            onResume?.invoke()
+        }
+
+        override fun onPause(owner: LifecycleOwner) {
+            super.onPause(owner)
+            onPause?.invoke()
+        }
+
+        override fun onStop(owner: LifecycleOwner) {
+            super.onStop(owner)
+            onStop?.invoke()
+        }
+
+        override fun onDestroy(owner: LifecycleOwner) {
+            super.onDestroy(owner)
+            onDestroy?.invoke()
+        }
+    }
+    addObserver(observer)
+    return observer
 }
 
-fun Lifecycle.doOnDestroy(block: () -> Unit) {
-    doOnLifecycleEvent(onDestroy = block)
+fun Lifecycle.doOnDestroy(block: () -> Unit): LifecycleObserver {
+    return doOnLifecycleEvent(onDestroy = block)
 }
 
 fun <T> SavedStateHandle.value(key: String): ReadWriteProperty<Any?, T?> {
