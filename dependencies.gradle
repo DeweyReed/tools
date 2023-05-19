@@ -1,9 +1,9 @@
 ext {
     //noinspection SpellCheckingInspection
     versions = [
-            agp         : '7.3.1',
+            agp         : '8.0.1',
             kotlin      : '1.7.20',
-            versions    : '0.43.0',
+            versions    : '0.46.0',
 
             compile_sdk : 33,
             min_sdk     : 21,
@@ -15,7 +15,7 @@ ext {
     //noinspection SpellCheckingInspection
     libs = [
             // AndroidX
-            androidx_appcompat          : 'androidx.appcompat:appcompat:1.5.1',
+            androidx_appcompat          : 'androidx.appcompat:appcompat:1.6.1',
             androidx_preference         : 'androidx.preference:preference:1.2.0',
             androidx_lifecycle_runtime  : 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1',
             androidx_lifecycle_livedata : 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1',
