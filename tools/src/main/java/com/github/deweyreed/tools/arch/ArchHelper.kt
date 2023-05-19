@@ -73,8 +73,36 @@ fun Lifecycle.doOnLifecycleEvent(
     return observer
 }
 
+fun Lifecycle.doOnResume(block: () -> Unit): LifecycleObserver {
+    val observer = object : DefaultLifecycleObserver {
+        override fun onResume(owner: LifecycleOwner) {
+            super.onResume(owner)
+            removeObserver(this)
+            block()
+        }
+    }
+    addObserver(observer)
+    return observer
+}
+
+fun LifecycleOwner.doOnResume(block: () -> Unit): LifecycleObserver {
+    return lifecycle.doOnResume(block)
+}
+
 fun Lifecycle.doOnDestroy(block: () -> Unit): LifecycleObserver {
-    return doOnLifecycleEvent(onDestroy = block)
+    val observer = object : DefaultLifecycleObserver {
+        override fun onDestroy(owner: LifecycleOwner) {
+            super.onDestroy(owner)
+            removeObserver(this)
+            block()
+        }
+    }
+    addObserver(observer)
+    return observer
+}
+
+fun LifecycleOwner.doOnDestroy(block: () -> Unit): LifecycleObserver {
+    return lifecycle.doOnDestroy(block)
 }
 
 fun <T> SavedStateHandle.value(key: String): ReadWriteProperty<Any?, T?> {
