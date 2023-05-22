@@ -7,6 +7,6 @@ import android.view.Window
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsControllerCompat
 
-fun Window.getInsetsController(view: View): WindowInsetsControllerCompat {
+fun Window.getInsetsControllerCompat(view: View): WindowInsetsControllerCompat {
     return WindowCompat.getInsetsController(this, view)
 }
