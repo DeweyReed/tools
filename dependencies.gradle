@@ -2,7 +2,7 @@ ext {
     //noinspection SpellCheckingInspection
     versions = [
             agp         : '8.0.1',
-            kotlin      : '1.7.20',
+            kotlin      : '1.8.21',
             versions    : '0.46.0',
 
             compile_sdk : 33,
@@ -17,11 +17,11 @@ ext {
             // AndroidX
             androidx_appcompat          : 'androidx.appcompat:appcompat:1.6.1',
             androidx_preference         : 'androidx.preference:preference:1.2.0',
-            androidx_lifecycle_runtime  : 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1',
-            androidx_lifecycle_livedata : 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1',
-            androidx_lifecycle_viewmodel: 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1',
+            androidx_lifecycle_runtime  : 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1',
+            androidx_lifecycle_livedata : 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1',
+            androidx_lifecycle_viewmodel: 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1',
             // KTX
-            androidx_core_ktx           : 'androidx.core:core-ktx:1.9.0',
+            androidx_core_ktx           : 'androidx.core:core-ktx:1.10.1',
             androidx_collection_ktx     : 'androidx.collection:collection-ktx:1.2.0',
 
             // Material
