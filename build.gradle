@@ -50,12 +50,13 @@ subprojects {
                     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
                     vectorDrawables.useSupportLibrary true
                 }
-            }
-        }
-        if (project.plugins.hasPlugin("kotlin-kapt")) {
-            kapt {
-                javacOptions {
-                    option("-Xmaxerrs", 500)
+
+                compileOptions {
+                    sourceCompatibility = JavaVersion.VERSION_17
+                    targetCompatibility = JavaVersion.VERSION_17
+                }
+                kotlinOptions {
+                    jvmTarget = JavaVersion.VERSION_17.toString()
                 }
             }
         }
