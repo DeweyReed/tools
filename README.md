@@ -6,6 +6,16 @@ Personal android tools code.
 
 ## Changelog
 
+### 0.7.0
+
+- AGP 8.0.1 and Kotlin 1.8.21.
+- Added `Lifecycle.doOnStart` and `Lifecycle.doOnResume`
+- Added `Window.getInsetsControllerCompat`
+- Added `PackageManagerCompat.getInstalledPackages`
+- Moved `PackageManager` compat methods into `PackageManagerCompat`
+- Removed `Bundle` and `Intent` compat methods in favor of `BundleCompat` and `IntentCompat`
+- Removed `*.dip`, `View.dp` and `Fragment.dp`
+
 ### 0.6.0
 
 - Added the support for Android 13
