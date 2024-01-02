@@ -1,52 +1,21 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-
-buildscript {
-    apply from: 'dependencies.gradle'
-    repositories {
-        google()
-        gradlePluginPortal()
-        mavenCentral()
-
-    }
-    dependencies {
-        classpath "com.android.tools.build:gradle:${versions.agp}"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
-
-        classpath "com.github.ben-manes:gradle-versions-plugin:${versions.versions}"
-
-    }
-}
-
-apply plugin: "com.github.ben-manes.versions"
-
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-        maven {
-            url 'https://jitpack.io'
-            content {
-                includeGroup('com.github.DeweyReed')
-            }
-        }
-    }
-}
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
+plugins {
+    alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.kotlin.android) apply false
+    alias(libs.plugins.versions)
 }
 
 subprojects {
     afterEvaluate {
         if (project.plugins.hasPlugin('com.android.library')) {
             android {
-                compileSdk versions.compile_sdk
+                compileSdk libs.versions.compileSdk.get() as Integer
 
                 defaultConfig {
-                    minSdk versions.min_sdk
-                    targetSdk versions.target_sdk
-                    versionCode versions.version_code
-                    versionName versions.version_name
+                    minSdk libs.versions.minSdk.get() as Integer
+                    targetSdk libs.versions.targetSdk.get() as Integer
+                    versionCode libs.versions.versionCode.get() as Integer
+                    versionName libs.versions.versionName.get()
                     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
                     vectorDrawables.useSupportLibrary true
                 }
@@ -63,13 +32,14 @@ subprojects {
     }
 }
 
-def isNonStable = { String version ->
-    def stableKeyword = ['RELEASE', 'FINAL', 'GA'].any { it -> version.toUpperCase().contains(it) }
-    def regex = /^[0-9,.v-]+(-r)?$/
-    return !stableKeyword && !(version ==~ regex)
-}
-
 tasks.named("dependencyUpdates").configure {
+    def isNonStable = { String version ->
+        def stableKeyword = ['RELEASE', 'FINAL', 'GA']
+                .any { keyword -> version.toUpperCase().contains(keyword) }
+        def regex = /^[0-9,.v-]+(-r)?$/
+        return !stableKeyword && !(version ==~ regex)
+    }
+
     rejectVersionIf {
         !it.currentVersion.contains(".") ||
                 (isNonStable(it.candidate.version) && !isNonStable(it.currentVersion))

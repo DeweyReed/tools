@@ -1,0 +1,31 @@
+[versions]
+agp = "8.1.4"
+
+compileSdk = "33"
+minSdk = "21"
+targetSdk = "33"
+
+versionCode = "70"
+versionName = "0.7.0"
+
+kotlin = "1.8.22"
+
+[plugins]
+android-library = { id = "com.android.library", version.ref = "agp" }
+
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+
+versions = "com.github.ben-manes.versions:0.50.0"
+
+[libraries]
+androidx-appcompat = "androidx.appcompat:appcompat:1.6.1"
+androidx-preference = "androidx.preference:preference:1.2.1"
+androidx-lifecycle-runtime = "androidx.lifecycle:lifecycle-runtime-ktx:2.6.2"
+androidx-lifecycle-liveData = "androidx.lifecycle:lifecycle-livedata-ktx:2.6.2"
+androidx-lifecycle-viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2"
+androidx-core = "androidx.core:core-ktx:1.10.1"
+androidx-collection = "androidx.collection:collection-ktx:1.2.0"
+
+material = "com.google.android.material:material:1.4.0"
+
+toastCompat = "com.github.DeweyReed:ToastCompat:d0a4d6cac3"

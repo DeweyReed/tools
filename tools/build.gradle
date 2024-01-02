@@ -1,6 +1,6 @@
 plugins {
-    id 'com.android.library'
-    id 'kotlin-android'
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
     id 'maven-publish'
 }
 
@@ -14,17 +14,17 @@ android {
 }
 
 dependencies {
-    implementation libs.androidx_appcompat
-    implementation libs.androidx_preference
-    implementation libs.androidx_lifecycle_runtime
-    implementation libs.androidx_lifecycle_livedata
-    implementation libs.androidx_lifecycle_viewmodel
-    implementation libs.androidx_core_ktx
-    implementation libs.androidx_collection_ktx
+    implementation libs.androidx.appcompat
+    implementation libs.androidx.preference
+    implementation libs.androidx.lifecycle.runtime
+    implementation libs.androidx.lifecycle.liveData
+    implementation libs.androidx.lifecycle.viewModel
+    implementation libs.androidx.core
+    implementation libs.androidx.collection
 
     implementation libs.material
 
-    implementation libs.toast_compat
+    implementation libs.toastCompat
 
 }
 
@@ -33,7 +33,7 @@ publishing {
         release(MavenPublication) {
             groupId = 'com.github.DeweyReed'
             artifactId = 'tools'
-            version = versions.version_name
+            version = libs.versions.versionName.get()
 
             afterEvaluate {
                 from components.release
