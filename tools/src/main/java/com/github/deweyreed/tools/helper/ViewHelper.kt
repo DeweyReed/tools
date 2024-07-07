@@ -6,6 +6,7 @@ import android.annotation.SuppressLint
 import android.graphics.drawable.Animatable
 import android.text.InputType
 import android.util.TypedValue
+import android.view.GestureDetector
 import android.view.View
 import android.view.ViewPropertyAnimator
 import android.view.inputmethod.EditorInfo
@@ -13,7 +14,6 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.ScrollView
 import android.widget.TextView
-import androidx.core.view.GestureDetectorCompat
 import androidx.core.view.postDelayed
 import androidx.core.view.postOnAnimationDelayed
 import com.google.android.material.tabs.TabLayout
@@ -77,7 +77,7 @@ fun ImageView.stopDrawableAnimation() {
 }
 
 @SuppressLint("ClickableViewAccessibility")
-fun GestureDetectorCompat.attachToView(view: View) {
+fun GestureDetector.attachToView(view: View) {
     view.setOnTouchListener { _, event ->
         onTouchEvent(event)
         true
