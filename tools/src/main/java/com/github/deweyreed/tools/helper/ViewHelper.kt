@@ -5,7 +5,6 @@ package com.github.deweyreed.tools.helper
 import android.annotation.SuppressLint
 import android.graphics.drawable.Animatable
 import android.text.InputType
-import android.util.TypedValue
 import android.view.GestureDetector
 import android.view.View
 import android.view.ViewPropertyAnimator
@@ -44,16 +43,6 @@ inline fun View.gone() {
 inline fun View.setScale(value: Float) {
     scaleX = value
     scaleY = value
-}
-
-fun View.setSelectableItemBackground() {
-    val outValue = TypedValue()
-    context.theme.resolveAttribute(
-        androidx.appcompat.R.attr.selectableItemBackground,
-        outValue,
-        true
-    )
-    setBackgroundResource(outValue.resourceId)
 }
 
 fun View.triggerRipple(duration: Long = 100) {
