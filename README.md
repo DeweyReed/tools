@@ -6,6 +6,11 @@ Personal android tools code.
 
 ## Changelog
 
+### 0.8.0
+
+- Android 14(34)
+- AGP 8.3.2, Kotlin 1.9.24
+
 ### 0.7.0
 
 - AGP 8.0.1 and Kotlin 1.8.21.
